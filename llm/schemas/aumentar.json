@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "properties": {
+    "textos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "texto": {"type": "string", "minLength": 10},
+          "registro": {"type": "string", "enum": ["breve", "coloquial", "comercial", "tecnico"]}
+        },
+        "required": ["texto", "registro"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["textos"],
+  "additionalProperties": false
+}

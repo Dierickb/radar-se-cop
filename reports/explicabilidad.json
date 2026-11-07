@@ -1,0 +1,270 @@
+{
+  "global": [
+    {
+      "familia": "8011",
+      "nombre": "Servicios de recursos humanos",
+      "variante": "A_con_formulas",
+      "top_a_favor": "proyecto, servicios, prestar, secretaria, proyecto denominado, profesionales, servicios profesionales, servicios como, prestar servicios, quindio"
+    },
+    {
+      "familia": "8011",
+      "nombre": "Servicios de recursos humanos",
+      "variante": "B_limpio",
+      "top_a_favor": "secretaria, proyecto denominado, proyecto, marco proyecto, oficina, subsecretaria, departamento, quindio, gobernacion, cucuta"
+    },
+    {
+      "familia": "8012",
+      "nombre": "Servicios legales",
+      "variante": "A_con_formulas",
+      "top_a_favor": "juridico, juridica, juridicos, abogado, juridicas, contractual, juridicamente, asesoria, contractuales, legal"
+    },
+    {
+      "familia": "8012",
+      "nombre": "Servicios legales",
+      "variante": "B_limpio",
+      "top_a_favor": "juridico, juridica, abogado, contractual, juridicar, abogado apoyar, judicial, asesoria, municipal fusagasuga, juridicamente"
+    },
+    {
+      "familia": "8510",
+      "nombre": "Servicios integrales de salud",
+      "variante": "A_con_formulas",
+      "top_a_favor": "salud, enfermeria, isabu, ese, ese isabu, de salud, hospital, enfermero, profesional, la ese"
+    },
+    {
+      "familia": "8510",
+      "nombre": "Servicios integrales de salud",
+      "variante": "B_limpio",
+      "top_a_favor": "salud, isabu, enfermeria, hospital, resolucion, enfermero, enfermera, carmen emilia, emilia, solucion salud"
+    },
+    {
+      "familia": "8111",
+      "nombre": "Servicios informáticos",
+      "variante": "A_con_formulas",
+      "top_a_favor": "internet, soporte, de internet, software, informacion, web, impresoras, digital, actualizacion, de sistemas"
+    },
+    {
+      "familia": "8111",
+      "nombre": "Servicios informáticos",
+      "variante": "B_limpio",
+      "top_a_favor": "internet, soporte, software, informacion, sistema, tecnologico, dato, informatico, impresora, plataforma"
+    },
+    {
+      "familia": "8610",
+      "nombre": "Formación profesional",
+      "variante": "A_con_formulas",
+      "top_a_favor": "capacitacion, formacion, capacitaciones, inder, competencias, las competencias, agroindustrial, presencial, evaluar, funcionarios"
+    },
+    {
+      "familia": "8610",
+      "nombre": "Formación profesional",
+      "variante": "B_limpio",
+      "top_a_favor": "capacitacion, formacion, instructor, inder, presencial, funcionario, formador, funza, programa, competencia"
+    },
+    {
+      "familia": "9314",
+      "nombre": "Servicios comunitarios y sociales",
+      "variante": "A_con_formulas",
+      "top_a_favor": "cultural, social, culturales, dabeiba, patrimonio, social para, de dabeiba, artisticas, artistica, cultura"
+    },
+    {
+      "familia": "9314",
+      "nombre": "Servicios comunitarios y sociales",
+      "variante": "B_limpio",
+      "top_a_favor": "cultural, social, dabeiba, municipio dabeiba, patrimonio, artistica, cultura, historico, oficina promocion, galapa"
+    }
+  ],
+  "local": [
+    {
+      "objeto": "SERVICIOS DE ASESORIA ESPECIALIZADA PARA BRINDAR ACOMPAÑAMIENTO A LOS PROCESOS DE AUDITORIA EN EL MARCO DE GAUDI EN LA SECRETARIA DE SALUD DEL MUNICIPIO DE LA JAGUA DE IBIRICO",
+      "declarado": "8011",
+      "predicho": "8011",
+      "nombre_predicho": "Servicios de recursos humanos",
+      "terminos": [
+        {
+          "termino": "secretaria",
+          "contribucion": 0.702
+        },
+        {
+          "termino": "brindar",
+          "contribucion": 0.374
+        },
+        {
+          "termino": "especializado brindar",
+          "contribucion": 0.268
+        },
+        {
+          "termino": "salud municipio",
+          "contribucion": 0.21
+        },
+        {
+          "termino": "acompanamiento",
+          "contribucion": 0.195
+        },
+        {
+          "termino": "proceso",
+          "contribucion": 0.173
+        }
+      ]
+    },
+    {
+      "objeto": "FORTALECIMIENTO EN LA REALIZACION DE ACTIVIDADES DEPORTIVAS COMO MONITOR DE DEPORTES; BALONCESTO Y HÁBITOS SALUDABLES CON LOS ADULTOS MAYORES EN EL CORREGIMIENTO DE BOLOMBOLO Y APOYO EN OTRAS ACTIVIDA",
+      "declarado": "9014",
+      "predicho": "9014",
+      "nombre_predicho": "Deportes comerciales",
+      "terminos": [
+        {
+          "termino": "deporte",
+          "contribucion": 1.674
+        },
+        {
+          "termino": "deportivo",
+          "contribucion": 0.956
+        },
+        {
+          "termino": "monitor",
+          "contribucion": 0.726
+        },
+        {
+          "termino": "actividad deportivo",
+          "contribucion": 0.536
+        },
+        {
+          "termino": "realizacion",
+          "contribucion": 0.361
+        },
+        {
+          "termino": "saludable",
+          "contribucion": 0.314
+        }
+      ]
+    },
+    {
+      "objeto": "PRESTACION DE SERVICIOS PROFESIONALES COMO INGENIERO CIVIL PARA LA ASESORIA TECNICA DE LOS PROCESOS CONTRACTUALES DE LA OFICINA DE CONTRATACION DEL MUNICIPIO DE VILLAVICENCIO META",
+      "declarado": "8011",
+      "predicho": "8011",
+      "nombre_predicho": "Servicios de recursos humanos",
+      "terminos": [
+        {
+          "termino": "oficina",
+          "contribucion": 0.492
+        },
+        {
+          "termino": "villavicencio meta",
+          "contribucion": 0.474
+        },
+        {
+          "termino": "meta",
+          "contribucion": 0.369
+        },
+        {
+          "termino": "contratacion",
+          "contribucion": 0.28
+        },
+        {
+          "termino": "ingeniero",
+          "contribucion": 0.273
+        },
+        {
+          "termino": "contratacion municipio",
+          "contribucion": 0.22
+        }
+      ]
+    },
+    {
+      "objeto": "PRESTAR SERVICIOS PROFESIONALES EN LA IMPLEMENTACIÓN DEL MODELO DE PROTECCIÓN INTEGRAL DE LA ATENCIÓN MATERNO PERINATAL PRIMERA INFANCIA; INFANCIA Y ADOLESCENCIA EN LA SECRETARIA DE SALUD DE LA ALCALD",
+      "declarado": "8510",
+      "predicho": "8510",
+      "nombre_predicho": "Servicios integrales de salud",
+      "terminos": [
+        {
+          "termino": "salud",
+          "contribucion": 0.943
+        },
+        {
+          "termino": "secretaria salud",
+          "contribucion": 0.523
+        },
+        {
+          "termino": "salud alcaldia",
+          "contribucion": 0.292
+        },
+        {
+          "termino": "marco codigo",
+          "contribucion": 0.29
+        },
+        {
+          "termino": "buenaventura marco",
+          "contribucion": 0.278
+        },
+        {
+          "termino": "perinatal",
+          "contribucion": 0.245
+        }
+      ]
+    },
+    {
+      "objeto": "PRESTAR LOS SERVICIOS PROFESIONALES PARA REALIZAR ACTIVIDADES DE ARTICULACIÓN Y ORIENTACIÓN EN LOS PROCESOS DE  FORMULACIÓN; EVALUACIÓN Y SEGUIMIENTO A LAS POLÍTICAS E INSTRUMENTOS DE POLÍTICA EN LO Q",
+      "declarado": "8011",
+      "predicho": "8011",
+      "nombre_predicho": "Servicios de recursos humanos",
+      "terminos": [
+        {
+          "termino": "secretaria",
+          "contribucion": 0.516
+        },
+        {
+          "termino": "distrital",
+          "contribucion": 0.265
+        },
+        {
+          "termino": "politica",
+          "contribucion": 0.213
+        },
+        {
+          "termino": "seguimiento",
+          "contribucion": 0.209
+        },
+        {
+          "termino": "ambiente",
+          "contribucion": 0.199
+        },
+        {
+          "termino": "evaluacion",
+          "contribucion": 0.155
+        }
+      ]
+    }
+  ],
+  "contrafactual": {
+    "texto": "abogado acompanamiento juridico personeria municipal",
+    "antes": [
+      "8012",
+      0.7323569652046914
+    ],
+    "despues": [
+      "8011",
+      0.15802265028489382
+    ],
+    "texto_sin": "acompanamiento personeria municipal"
+  },
+  "fidelidad_B": {
+    "comprehensiveness": 0.28840269898686255,
+    "sufficiency": -0.16703152484022105,
+    "n": 500,
+    "comprehensiveness_azar": 0.09078929623345813
+  },
+  "calibracion": {
+    "0.5": {
+      "cobertura": 0.2963033329714472,
+      "acuerdo_con_SECOP": 0.5660895850508382
+    },
+    "0.7": {
+      "cobertura": 0.14029421344045162,
+      "acuerdo_con_SECOP": 0.6827239311278778
+    },
+    "0.9": {
+      "cobertura": 0.011996525892954076,
+      "acuerdo_con_SECOP": 0.9524886877828054
+    }
+  }
+}

@@ -1,0 +1,13 @@
+# Versiones exactas con las que se calcularon las cifras del documento (Python 3.13).
+# pip install -r requirements-lock.txt
+numpy==2.5.3
+pandas==3.0.5
+pyarrow==26.0.0
+scikit-learn==1.9.1
+joblib==1.6.0
+spacy==3.8.16
+model2vec==0.10.0
+streamlit==1.66.0
+requests==2.34.2
+xlrd==2.0.2
+openpyxl==3.1.5

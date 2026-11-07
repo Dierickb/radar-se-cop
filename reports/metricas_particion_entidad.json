@@ -1,0 +1,24 @@
+[
+  {
+    "conjunto": "entidades_no_vistas_natural",
+    "n": 33672,
+    "clases": 175,
+    "accuracy": 0.3058921358992635,
+    "macro_f1": 0.2246653724324992,
+    "top3": 0.6261879306248516,
+    "ece": 0.11998600285667425,
+    "acc_mayoritaria": 0.6095866001425517,
+    "macroF1_mayoritaria": 0.004328256709525391
+  },
+  {
+    "conjunto": "entidades_no_vistas_balanceado",
+    "n": 9279,
+    "clases": 175,
+    "accuracy": 0.42827890936523333,
+    "macro_f1": 0.2933039212035035,
+    "top3": 0.6488845780795345,
+    "ece": 0.03972799390818198,
+    "acc_mayoritaria": 0.032331070158422244,
+    "macroF1_mayoritaria": 0.0003579258198738312
+  }
+]

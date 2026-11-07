@@ -1,0 +1,79 @@
+{
+  "umbral": 0.7,
+  "test": 36844,
+  "marcadas": 1640,
+  "tasa": 0.04451199652589295,
+  "desde_8011": 0.7975609756097561,
+  "pares": [
+    {
+      "fam": "8011",
+      "pred": "8012",
+      "n": 278,
+      "de": "Servicios de recursos humanos",
+      "a": "Servicios legales"
+    },
+    {
+      "fam": "8011",
+      "pred": "8610",
+      "n": 211,
+      "de": "Servicios de recursos humanos",
+      "a": "Formación profesional"
+    },
+    {
+      "fam": "8011",
+      "pred": "8411",
+      "n": 126,
+      "de": "Servicios de recursos humanos",
+      "a": "Servicios de contabilidad y auditorias"
+    },
+    {
+      "fam": "8011",
+      "pred": "8510",
+      "n": 98,
+      "de": "Servicios de recursos humanos",
+      "a": "Servicios integrales de salud"
+    },
+    {
+      "fam": "8011",
+      "pred": "7710",
+      "n": 84,
+      "de": "Servicios de recursos humanos",
+      "a": "Gestión medioambiental"
+    },
+    {
+      "fam": "8011",
+      "pred": "8111",
+      "n": 61,
+      "de": "Servicios de recursos humanos",
+      "a": "Servicios informáticos"
+    },
+    {
+      "fam": "8011",
+      "pred": "8110",
+      "n": 54,
+      "de": "Servicios de recursos humanos",
+      "a": "Servicios profesionales de ingeniería"
+    },
+    {
+      "fam": "8011",
+      "pred": "7611",
+      "n": 40,
+      "de": "Servicios de recursos humanos",
+      "a": "Servicios de aseo y limpieza"
+    },
+    {
+      "fam": "8011",
+      "pred": "8512",
+      "n": 39,
+      "de": "Servicios de recursos humanos",
+      "a": "Práctica médica"
+    },
+    {
+      "fam": "8011",
+      "pred": "8511",
+      "n": 34,
+      "de": "Servicios de recursos humanos",
+      "a": "Prevención y control de enfermedades"
+    }
+  ]
+}

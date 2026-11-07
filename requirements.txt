@@ -1,0 +1,12 @@
+# Python >= 3.10
+numpy>=1.26
+pandas>=2.1
+pyarrow>=14
+scikit-learn>=1.4
+joblib>=1.3
+spacy>=3.7,<4          # luego: python -m spacy download es_core_news_sm
+model2vec>=0.4         # embeddings estáticos multilingües (búsqueda de procesos)
+streamlit>=1.50        # demo
+requests>=2.31         # descarga SODA (datos.gov.co)
+xlrd>=2.0              # catálogo UNSPSC .xls
+openpyxl>=3.1          # planillas del gold set .xlsx

@@ -1,0 +1,102 @@
+{
+  "peso_8011_por_formula": {
+    "la gestion": 2.2525213246717564,
+    "sus propios": 1.1649053982219748,
+    "propios medios": 1.167963643662065,
+    "plena autonomia": 1.2135772429980245,
+    "servicios profesionales": 3.074239878660721,
+    "prestacion de": 1.7937533916626285,
+    "prestar servicios": 2.958708070842009,
+    "de apoyo": 2.1128738735516834
+  },
+  "ranking_entre_terminos": {
+    "la gestion": 24,
+    "sus propios": 267,
+    "propios medios": 260,
+    "plena autonomia": 225,
+    "servicios profesionales": 7,
+    "prestacion de": 65,
+    "prestar servicios": 9,
+    "de apoyo": 38
+  },
+  "n_terminos": 88361,
+  "oficios": [
+    {
+      "oficio": "abogad",
+      "n_test": 1007,
+      "familia_caso10": "8012",
+      "SECOP_en_8011": 0.833,
+      "SECOP_en_caso10": 0.089,
+      "A_pred_8011": 0.259,
+      "A_pred_caso10": 0.617,
+      "B_pred_8011": 0.271,
+      "B_pred_caso10": 0.588
+    },
+    {
+      "oficio": "contador",
+      "n_test": 230,
+      "familia_caso10": "8411",
+      "SECOP_en_8011": 0.722,
+      "SECOP_en_caso10": 0.178,
+      "A_pred_8011": 0.113,
+      "A_pred_caso10": 0.752,
+      "B_pred_8011": 0.1,
+      "B_pred_caso10": 0.761
+    },
+    {
+      "oficio": "ingenier",
+      "n_test": 834,
+      "familia_caso10": "8110",
+      "SECOP_en_8011": 0.781,
+      "SECOP_en_caso10": 0.05,
+      "A_pred_8011": 0.239,
+      "A_pred_caso10": 0.278,
+      "B_pred_8011": 0.231,
+      "B_pred_caso10": 0.287
+    },
+    {
+      "oficio": "medic",
+      "n_test": 1007,
+      "familia_caso10": "8512",
+      "SECOP_en_8011": 0.357,
+      "SECOP_en_caso10": 0.179,
+      "A_pred_8011": 0.06,
+      "A_pred_caso10": 0.335,
+      "B_pred_8011": 0.047,
+      "B_pred_caso10": 0.34
+    },
+    {
+      "oficio": "enfermer",
+      "n_test": 823,
+      "familia_caso10": "8510",
+      "SECOP_en_8011": 0.379,
+      "SECOP_en_caso10": 0.513,
+      "A_pred_8011": 0.027,
+      "A_pred_caso10": 0.792,
+      "B_pred_8011": 0.024,
+      "B_pred_caso10": 0.775
+    },
+    {
+      "oficio": "docente",
+      "n_test": 120,
+      "familia_caso10": "8610",
+      "SECOP_en_8011": 0.567,
+      "SECOP_en_caso10": 0.042,
+      "A_pred_8011": 0.217,
+      "A_pred_caso10": 0.067,
+      "B_pred_8011": 0.208,
+      "B_pred_caso10": 0.05
+    },
+    {
+      "oficio": "conductor",
+      "n_test": 130,
+      "familia_caso10": "7811",
+      "SECOP_en_8011": 0.723,
+      "SECOP_en_caso10": 0.092,
+      "A_pred_8011": 0.154,
+      "A_pred_caso10": 0.323,
+      "B_pred_8011": 0.154,
+      "B_pred_caso10": 0.254
+    }
+  ]
+}

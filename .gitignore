@@ -1,0 +1,23 @@
+# Datos descargados y derivados (se regeneran con scripts/01-07)
+data/raw/
+data/processed/
+models/
+# Pruebas y temporales
+data/llm/piloto*.jsonl
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+reports/log_*.txt
+# Etiquetas de Claude sobre el gold set: NO publicar hasta que los dos anotadores terminen
+# (verlas antes sesgaría la anotación humana)
+data/llm/gold_claude.jsonl
+data/llm/piloto.jsonl
+# Clave del gold set: solo se sube al terminar la anotación
+data/gold/gold_set_CLAVE_no_abrir.xlsx
+# Planillas de los anotadores: se suben solo al terminar la tarea 5 (ver la guía)
+data/gold/gold_set_anotador_*.xlsx
+data/gold/gold_set_repeticion_*.xlsx
+data/gold/gold_desacuerdos.xlsx
+data/gold/gold_resuelto*.xlsx
+.venv/

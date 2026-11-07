@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "familia": {"type": "string", "pattern": "^([0-9]{4})?$"},
+          "segunda_familia": {"type": "string", "pattern": "^([0-9]{4})?$"},
+          "confianza": {"type": "string", "enum": ["alta", "media", "baja"]},
+          "no_clasificable": {"type": "boolean"},
+          "palabras_clave": {"type": "array", "items": {"type": "string"}, "maxItems": 5},
+          "regla": {"type": "string", "enum": ["R1", "R2", "R3", "R4", "R5", "R6", "R7", "R8"]}
+        },
+        "required": ["id", "familia", "segunda_familia", "confianza", "no_clasificable", "palabras_clave", "regla"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["items"],
+  "additionalProperties": false
+}
