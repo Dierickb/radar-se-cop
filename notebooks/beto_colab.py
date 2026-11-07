@@ -14,9 +14,9 @@
 
 # %%
 import os, subprocess, sys
-REPO = "https://github.com/davidm094/radar-secop.git"
+REPO = "https://github.com/Dierickb/radar-se-cop.git"
 if not os.path.exists("radar-secop") and "google.colab" in sys.modules:
-    subprocess.run(["git", "clone", "--depth", "1", REPO], check=True)
+    subprocess.run(["git", "clone", "--depth", "1", REPO, "radar-secop"], check=True)
 RAIZ = "radar-secop" if os.path.exists("radar-secop") else ".."
 sys.path.insert(0, os.path.join(RAIZ, "src"))
 
