@@ -1,0 +1,5 @@
+sistema,p@5,p@10,ndcg@10,n_consultas
+familia,0.293,0.303,0.307,30
+hibrido_app,0.587,0.553,0.597,30
+lexico,0.52,0.557,0.61,30
+semantico,0.56,0.553,0.588,30

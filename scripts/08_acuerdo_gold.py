@@ -103,8 +103,10 @@ def crear_repeticion(nombre: str, A: pd.DataFrame):
     faltan = int((A.loc[ind, "fam"] == "").sum())
     if faltan:
         sys.exit(f"Faltan {faltan} filas por anotar en G031-G300. Termine la primera pasada antes de la repetición.")
-    # Estratificada por procedencia (mitad humano, mitad pre-etiquetado por Claude) y barajada al final
+    # Solo filas con etiqueta humana (las pre-etiquetadas por Claude no sirven para medir la confiabilidad humana); barajada al final
     proc = leer_procedencia(ind)
+    ind = [i for i in ind if not str(proc[i]).startswith("claude")]
+    proc = proc[ind]
     grupos = {g: list(i) for g, i in proc.groupby(proc).groups.items()}
     por_grupo = N_REPETICION // len(grupos)
     muestra = [x for g in sorted(grupos)
@@ -283,7 +285,7 @@ def main():
         det = det.join(c[["fam_c", "confianza"]].rename(columns={"confianza": "conf_claude"}))
         # Las filas pre-etiquetadas por Claude no sirven para medir a Claude (se compararía consigo mismo):
         # la compuerta del paso 09 usa solo las etiquetas humanas; las otras se reportan aparte.
-        pre = det.procedencia == "claude_revisado"
+        pre = det.procedencia.str.startswith("claude")
         if (det.fam_c.notna() & pre).any():
             mp = det.fam_c.notna() & pre
             out["claude_vs_gold_preetiquetadas_no_valido"] = kappa(det.loc[mp, "gold"], det.loc[mp, "fam_c"])
@@ -325,7 +327,7 @@ def main():
     rng = np.random.RandomState(SEED)
     f1s, f1_azar = [], []
     for t, pk, fam, pr in zip(textos, ev.palabras_clave, ev.pred, ev.procedencia):
-        if pr == "claude_revisado":   # sus palabras_clave las escribió Claude, no una persona
+        if str(pr).startswith("claude"):   # sus palabras_clave las escribió Claude, no una persona
             continue
         humano = set().union(*[tokens(p) for p in pk.split(";") if p.strip()]) if pk.strip(";") else set()
         if not humano or not t:
