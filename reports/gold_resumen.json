@@ -1,0 +1,92 @@
+{
+  "diseno": "un anotador (Dierick); consistencia por re-anotación ciega de 60 ítems",
+  "kappa_intra_anotador": null,
+  "no_clasificable_por_anotador": {
+    "Dierick": 0.0
+  },
+  "fuente_gold": "primera pasada de Dierick",
+  "n_por_procedencia": {
+    "claude_revisado": 199,
+    "humano": 101
+  },
+  "n_gold": 300,
+  "n_no_clasificable": 0,
+  "error_secop": {
+    "global": 0.8166666666666667,
+    "por_estrato": {
+      "8011": 0.983,
+      "otras": 0.706
+    },
+    "por_procedencia": {
+      "claude_revisado": 0.764,
+      "humano": 0.921
+    },
+    "transiciones_top": {
+      "8011->9314": 15,
+      "8011->8012": 11,
+      "8011->8010": 10,
+      "8011->8110": 10,
+      "8011->8510": 9,
+      "8011->8613": 8,
+      "8512->8510": 6,
+      "8011->8111": 5,
+      "8011->9315": 5,
+      "8011->8511": 4
+    }
+  },
+  "claude_vs_gold_preetiquetadas_no_valido": {
+    "kappa": 0.6458796744563369,
+    "acuerdo_bruto": 0.6582914572864321,
+    "n": 199
+  },
+  "claude_vs_gold": {
+    "kappa": 0.24158990788946733,
+    "acuerdo_bruto": 0.25742574257425743,
+    "n": 101,
+    "solo_etiquetas_humanas": true,
+    "por_confianza": {
+      "alta": {
+        "mean": 0.5,
+        "size": 32
+      },
+      "baja": {
+        "mean": 0.182,
+        "size": 11
+      },
+      "media": {
+        "mean": 0.138,
+        "size": 58
+      }
+    },
+    "vs_secop_acuerdo": 0.1782178217821782
+  },
+  "modelos_vs_gold": {
+    "familia_v1": {
+      "accuracy": 0.3233333333333333,
+      "macro_f1": 0.19149979416175525,
+      "top3": 0.5433333333333333,
+      "accuracy_vs_secop_mismos_items": 0.43333333333333335,
+      "gold_fuera_de_las_familias_del_modelo": 0.06666666666666665,
+      "n": 300,
+      "por_procedencia": {
+        "claude_revisado": {
+          "accuracy": 0.4020100502512563,
+          "top3": 0.6582914572864321,
+          "n": 199
+        },
+        "humano": {
+          "accuracy": 0.16831683168316833,
+          "top3": 0.31683168316831684,
+          "n": 101
+        }
+      }
+    }
+  },
+  "secop_vs_gold_accuracy": 0.18333333333333332,
+  "claude_vs_gold_accuracy_mismos_items": 0.5233333333333333,
+  "plausibilidad_token_f1": {
+    "modelo": 0.3293161376341523,
+    "azar": 0.1987180643430643,
+    "n": 96
+  }
+}

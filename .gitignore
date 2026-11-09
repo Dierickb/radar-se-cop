@@ -18,6 +18,8 @@ data/gold/gold_set_CLAVE_no_abrir.xlsx
 # Planillas de los anotadores: se suben solo al terminar la tarea 5 (ver la guía)
 data/gold/gold_set_anotador_*.xlsx
 data/gold/gold_set_repeticion_*.xlsx
+data/gold/gold_set_solo_humanos.xlsx
 data/gold/gold_desacuerdos.xlsx
 data/gold/gold_resuelto*.xlsx
 .venv/
+data/gold/correcciones_gold*.xlsx

@@ -28,7 +28,7 @@ La familia 8011 (Servicios de recursos humanos) se usa como cajón de sastre par
 Esto cambia el diseño del proyecto:
 
 - Las métricas contra SECOP miden **acuerdo con SECOP, no exactitud**.
-- Para la evaluación real se anota a mano un **gold set** de 300 contratos con una guía basada en el Caso 10. Lo anota una sola persona; la confiabilidad se mide re-anotando a ciegas 60 contratos una semana después (kappa de Cohen intra-anotador).
+- Para la evaluación real se anota a mano un **gold set** de 300 contratos con una guía basada en el Caso 10. 101 contratos los anotaron tres personas (sin traslape) y 199 los pre-etiquetó Claude, sin ver el código de SECOP, y los revisó una persona; la procedencia de cada fila está en `data/gold/gold_procedencia.csv` y todas las métricas se reportan también por procedencia. La confiabilidad se mide re-anotando a ciegas, una semana después, 60 contratos (30 de cada procedencia). El acuerdo de Claude con el gold se mide **solo en las 101 etiquetas humanas**, porque en las pre-etiquetadas Claude se compararía consigo mismo.
 - Las fórmulas de contratación se quitan del texto para que el modelo no aprenda el atajo hacia 8011.
 
 ## Pipeline

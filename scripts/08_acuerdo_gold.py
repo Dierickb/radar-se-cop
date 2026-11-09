@@ -66,8 +66,32 @@ ANOTADORES = ["David", "Dierick"]
 N_REPETICION = 60   # ítems de G031-G300 que el anotador único vuelve a anotar a ciegas
 
 
+def leer_procedencia(idx) -> pd.Series:
+    """Quién produjo cada etiqueta (data/gold/gold_procedencia.csv): 'humano' o 'claude_revisado'
+    (pre-etiquetado por Claude y revisado por una persona). Sin el archivo, todo es 'sin_dato'."""
+    f = G / "gold_procedencia.csv"
+    if not f.exists():
+        return pd.Series("sin_dato", index=idx, name="procedencia")
+    p = pd.read_csv(f, dtype=str).set_index("item_id").procedencia
+    return p.reindex(idx).fillna("sin_dato").rename("procedencia")
+
+
 def archivo_repeticion(nombre: str) -> Path:
     return G / f"gold_set_repeticion_{nombre}.xlsx"
+
+
+def listas(ws, n_filas: int, n_familias: int):
+    """Las mismas listas desplegables de la plantilla (columnas por nombre, no por posición)."""
+    from openpyxl.utils import get_column_letter
+    from openpyxl.worksheet.datavalidation import DataValidation
+    col = {c.value: get_column_letter(c.column) for c in ws[1]}
+    fin = n_filas + 1
+    for formula, campos in ((f"=familias!$A$2:$A${n_familias + 1}", ["familia_anotada", "segunda_familia"]),
+                            ('"alta,media,baja"', ["confianza"]), ('"no,sí"', ["no_clasificable"])):
+        dv = DataValidation(type="list", formula1=formula, allow_blank=True, showErrorMessage=False)
+        for c in campos:
+            dv.add(f"{col[c]}2:{col[c]}{fin}")
+        ws.add_data_validation(dv)
 
 
 def crear_repeticion(nombre: str, A: pd.DataFrame):
@@ -79,7 +103,14 @@ def crear_repeticion(nombre: str, A: pd.DataFrame):
     faltan = int((A.loc[ind, "fam"] == "").sum())
     if faltan:
         sys.exit(f"Faltan {faltan} filas por anotar en G031-G300. Termine la primera pasada antes de la repetición.")
-    muestra = pd.Series(ind).sample(min(N_REPETICION, len(ind)), random_state=SEED).tolist()   # ya viene barajada
+    # Estratificada por procedencia (mitad humano, mitad pre-etiquetado por Claude) y barajada al final
+    proc = leer_procedencia(ind)
+    grupos = {g: list(i) for g, i in proc.groupby(proc).groups.items()}
+    por_grupo = N_REPETICION // len(grupos)
+    muestra = [x for g in sorted(grupos)
+               for x in pd.Series(grupos[g]).sample(min(por_grupo, len(grupos[g])), random_state=SEED)]
+    muestra = pd.Series(muestra).sample(frac=1, random_state=SEED).tolist()
+    print("repetición por procedencia:", proc[muestra].value_counts().to_dict())
     hoja = A.loc[muestra, ["objeto_del_contrato", "nombre_entidad", "tipo_de_contrato"]].copy()
     for c in ["familia_anotada", "segunda_familia", "confianza", "palabras_clave", "no_clasificable", "comentario"]:
         hoja[c] = ""
@@ -87,6 +118,7 @@ def crear_repeticion(nombre: str, A: pd.DataFrame):
     with pd.ExcelWriter(destino) as w:
         hoja.reset_index().to_excel(w, sheet_name="anotacion", index=False)
         familias.to_excel(w, sheet_name="familias", index=False)
+        listas(w.sheets["anotacion"], len(hoja), len(familias))
     print(f"{len(hoja)} ítems -> data/gold/{destino.name}. Anótelos sin abrir su planilla original "
           f"(idealmente una semana después de la primera pasada).")
 
@@ -100,7 +132,9 @@ def kappa_intra(nombre: str, A: pd.DataFrame) -> dict | None:
     if R.empty:
         return None
     a, b = A.loc[R.index, "fam"], R.fam
-    return {"familia": kappa(a, b), "segmento": kappa(a.str[:2], b.str[:2]),
+    proc = leer_procedencia(R.index)
+    por_proc = {g: {**kappa(a[proc == g], b[proc == g])} for g in sorted(proc.unique())}
+    return {"familia": kappa(a, b), "segmento": kappa(a.str[:2], b.str[:2]), "por_procedencia": por_proc,
             "inconsistentes": a.index[a != b].tolist(), "_primera": a, "_repeticion": b}
 
 
@@ -139,6 +173,7 @@ def main():
                 return
             print("kappa intra-anotador familia:", intra["familia"])
             print("kappa intra-anotador segmento:", intra["segmento"])
+            print("kappa por procedencia de la primera etiqueta:", intra["por_procedencia"])
             inc = intra["inconsistentes"]
             pd.DataFrame({"objeto_del_contrato": A.loc[inc, "objeto_del_contrato"],
                           "primera_pasada": A.loc[inc, "familia_anotada"],
@@ -185,7 +220,8 @@ def main():
     if unico:
         out["diseno"] = f"un anotador ({unico}); consistencia por re-anotación ciega de {N_REPETICION} ítems"
         out["kappa_intra_anotador"] = None if intra is None else {
-            "familia": intra["familia"], "segmento": intra["segmento"], "n_inconsistentes": len(intra["inconsistentes"])}
+            "familia": intra["familia"], "segmento": intra["segmento"], "por_procedencia": intra["por_procedencia"],
+            "n_inconsistentes": len(intra["inconsistentes"])}
         out["no_clasificable_por_anotador"] = {unico: float(A.nc.mean())}
     else:
         ind = A.index[~A.fase.astype(str).str.startswith("1")]
@@ -223,6 +259,8 @@ def main():
                             "objeto": A.objeto_del_contrato, "palabras_clave": A.palabras_clave.fillna("").astype(str)
                             + ";" + B.palabras_clave.fillna("").astype(str)})
     det = det.join(clave[["estrato", "fam_secop"]])
+    det["procedencia"] = leer_procedencia(det.index)
+    out["n_por_procedencia"] = det.procedencia.value_counts().to_dict()
     det = det[det.gold != ""]
     out["n_gold"] = int(len(det))
     out["n_no_clasificable"] = int((det.gold == "NC").sum())
@@ -231,7 +269,8 @@ def main():
     # 2. Error de la etiqueta SECOP por estrato
     ev["secop_ok"] = ev.fam_secop == ev.gold
     out["error_secop"] = {"global": float(1 - ev.secop_ok.mean()),
-                          "por_estrato": (1 - ev.groupby("estrato").secop_ok.mean()).round(3).to_dict()}
+                          "por_estrato": (1 - ev.groupby("estrato").secop_ok.mean()).round(3).to_dict(),
+                          "por_procedencia": (1 - ev.groupby("procedencia").secop_ok.mean()).round(3).to_dict()}
     tr = ev[~ev.secop_ok].groupby(["fam_secop", "gold"]).size().sort_values(ascending=False).head(10)
     out["error_secop"]["transiciones_top"] = {f"{a}->{b}": int(n) for (a, b), n in tr.items()}
 
@@ -242,8 +281,15 @@ def main():
         c = c.set_index("id")
         c["fam_c"] = np.where(c.no_clasificable, "NC", c.familia)
         det = det.join(c[["fam_c", "confianza"]].rename(columns={"confianza": "conf_claude"}))
-        m = det.fam_c.notna()
+        # Las filas pre-etiquetadas por Claude no sirven para medir a Claude (se compararía consigo mismo):
+        # la compuerta del paso 09 usa solo las etiquetas humanas; las otras se reportan aparte.
+        pre = det.procedencia == "claude_revisado"
+        if (det.fam_c.notna() & pre).any():
+            mp = det.fam_c.notna() & pre
+            out["claude_vs_gold_preetiquetadas_no_valido"] = kappa(det.loc[mp, "gold"], det.loc[mp, "fam_c"])
+        m = det.fam_c.notna() & ~pre
         out["claude_vs_gold"] = {**kappa(det.loc[m, "gold"], det.loc[m, "fam_c"]),
+                                 "solo_etiquetas_humanas": bool(pre.any()),
                                  "por_confianza": det[m].assign(ok=det.gold == det.fam_c)
                                  .groupby("conf_claude").ok.agg(["mean", "size"]).round(3).to_dict("index"),
                                  "vs_secop_acuerdo": float((det.loc[m, "fam_c"] == det.loc[m, "fam_secop"]).mean())}
@@ -263,7 +309,11 @@ def main():
             "top3": float(np.mean([g in t for g, t in zip(ev.gold, top)])),
             "accuracy_vs_secop_mismos_items": float((pred == ev.fam_secop).mean()),
             "gold_fuera_de_las_familias_del_modelo": float(1 - ev.gold.isin(mod.classes_).mean()),
-            "n": int(len(ev))}
+            "n": int(len(ev)),
+            "por_procedencia": {g: {"accuracy": float((pred[i] == ev.gold.values[i]).mean()),
+                                    "top3": float(np.mean([ev.gold.values[j] in top[j] for j in i])), "n": int(len(i))}
+                                for g in sorted(ev.procedencia.unique())
+                                for i in [np.flatnonzero(ev.procedencia.values == g)]}}
         if nombre_m == MODELOS[0]:
             mod0, ev["pred"] = mod, pred
     out["secop_vs_gold_accuracy"] = float(ev.secop_ok.mean())
@@ -274,7 +324,9 @@ def main():
     # 5. Plausibilidad: palabras resaltadas por el modelo vs palabras_clave humanas
     rng = np.random.RandomState(SEED)
     f1s, f1_azar = [], []
-    for t, pk, fam in zip(textos, ev.palabras_clave, ev.pred):
+    for t, pk, fam, pr in zip(textos, ev.palabras_clave, ev.pred, ev.procedencia):
+        if pr == "claude_revisado":   # sus palabras_clave las escribió Claude, no una persona
+            continue
         humano = set().union(*[tokens(p) for p in pk.split(";") if p.strip()]) if pk.strip(";") else set()
         if not humano or not t:
             continue
