@@ -21,5 +21,6 @@ data/gold/gold_set_repeticion_*.xlsx
 data/gold/gold_set_solo_humanos.xlsx
 data/gold/gold_desacuerdos.xlsx
 data/gold/gold_resuelto*.xlsx
+reports/gold_detalle.csv
 .venv/
 data/gold/correcciones_gold*.xlsx

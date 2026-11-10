@@ -1,0 +1,11 @@
+{
+  "n": 100,
+  "proporciones": {
+    "modelo": 0.89,
+    "secop": 0.05,
+    "no_clasificable": 0.03,
+    "ninguna": 0.03
+  },
+  "precision_alerta": 0.89,
+  "nota": "precision_alerta = fracción en que la familia sugerida por el modelo era la correcta"
+}
